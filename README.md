@@ -2,6 +2,14 @@
 
 Jednoduchá iOS aplikace pro rychlý přehled zařízení ze služby [**Živý Obraz**](https://zivyobraz.eu/?page=o-sluzbe). Na iPhonu nebo iPadu uvidíš stav svých e-paperů, naměřené hodnoty, baterii, historii i widgety přímo na ploše.
 
+## Veřejné testování přes TestFlight
+
+Aplikace je dostupná k veřejnému testování přes Apple TestFlight: [připojit se k testování](https://testflight.apple.com/join/D6CzKtCZ).
+
+TestFlight je oficiální aplikace od Applu pro instalaci testovacích verzí aplikací před vydáním v App Storu. Po otevření odkazu si nainstaluješ TestFlight, přijmeš pozvánku a potom můžeš nainstalovat testovací verzi Živého Obrazu.
+
+Testovací verze může obsahovat nové funkce dřív než běžná verze, ale občas se v ní může objevit chyba nebo nedodělané chování. Když vyjde nová testovací verze, TestFlight tě na ni upozorní a nabídne aktualizaci.
+
 ## Hlavní funkce
 
 - **Přehled všech zařízení** - teplota, vlhkost, baterie, online stav a rychlé filtrování problémů.
