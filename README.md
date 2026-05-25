@@ -84,9 +84,9 @@ Po uložení aplikace načte zařízení a uloží data pro widgety.
 ### 3. Přidej widget na plochu
 
 1. Na ploše iPhonu nebo iPadu podrž prst na volném místě.
-2. Klepni na **+** a vyhledej **Živý Obraz**.
+2. Klepni na **Upravit**, zvol přidat widget a vyhledej **Živý Obraz**.
 3. Vyber velikost widgetu.
-4. Po přidání widget podrž a zvol **Upravit widget**.
+4. Po přidání na widgetu podrž prstem a zvol **Upravit widget**.
 5. Vyber konkrétní zařízení nebo ponech automatický výběr.
 
 Widget používá poslední načtená data a průběžně se aktualizuje podle možností iOS.
@@ -97,7 +97,7 @@ Widget používá poslední načtená data a průběžně se aktualizuje podle m
 2. Klepni na přidání vlastní karty.
 3. Vyber hodnoty z exportu služby Živý Obraz.
 4. Zvol rozložení karty a vzhled.
-5. Přidej na plochu widget **Živý Obraz Custom** a vyber vytvořenou kartu.
+5. Přidej na plochu widget **Živý Obraz Custom** a vyber vytvořenou kartu stejným způsobem jako pro widget zařízení v bodě 3.
 
 Vlastní widget je vhodný například pro venkovní teplotu, vlhkost, tlak, CO2, kvalitu vzduchu, stav baterie nebo jakoukoli další hodnotu, kterou máš v exportu.
 
