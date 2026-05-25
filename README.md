@@ -4,8 +4,9 @@ Jednoduchá iOS aplikace pro rychlý přehled zařízení ze služby [**Živý O
 
 ## Veřejné testování přes TestFlight
 
-Aplikace je dostupná k veřejnému testování přes Apple TestFlight: [připojit se k testování](https://testflight.apple.com/join/D6CzKtCZ).
-(Před kliknutím na odkaz si z App Store doinstalujte aplikaci TestFligt od Apple. Odkaz poté otevírejte z iOS zařízení pro automatické propojení s TestFlight)
+Aplikace je dostupná k veřejnému testování přes Apple TestFlight (před kliknutím na odkaz si z App Store doinstaluj aplikaci TestFligt od Apple. Odkaz poté otevří přímo z iOS zařízení pro automatické propojení s TestFlight)
+
+## [Připojit se k testování](https://testflight.apple.com/join/D6CzKtCZ).
 
 TestFlight je oficiální aplikace od Applu pro instalaci testovacích verzí aplikací před vydáním v App Storu. Po otevření odkazu si nainstaluješ TestFlight, přijmeš pozvánku a potom můžeš nainstalovat testovací verzi Živého Obrazu.
 
