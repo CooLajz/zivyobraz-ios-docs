@@ -8,7 +8,7 @@ Aplikace je dostupná k veřejnému testování přes oficiální Apple TestFlig
 
 Testovací verze může obsahovat nové funkce dřív než běžná verze, ale občas se v ní může objevit chyba nebo nedodělané chování. Když vyjde nová testovací verze, TestFlight tě na ni upozorní a nabídne aktualizaci.
 
-## [Připojit se k testování](https://testflight.apple.com/join/D6CzKtCZ).
+## [Připojit se k testování](https://testflight.apple.com/join/D6CzKtCZ)
 
 ## Hlavní funkce
 
