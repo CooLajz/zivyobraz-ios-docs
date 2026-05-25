@@ -1,17 +1,17 @@
 # Živý Obraz pro iOS
 
-Jednoduchá iOS aplikace pro rychlý přehled zařízení ze služby **Živý Obraz**. Na iPhonu nebo iPadu uvidíš stav svých e-paperů, naměřené hodnoty, baterii, historii i widgety přímo na ploše.
+Jednoduchá iOS aplikace pro rychlý přehled zařízení ze služby [**Živý Obraz**](https://zivyobraz.eu/?page=o-sluzbe). V telefonu uvidíš stav svých e-paperů, naměřené hodnoty, baterii, historii i widgety přímo na ploše.
 
 ## Hlavní funkce
 
 - **Přehled všech zařízení** - teplota, vlhkost, baterie, online stav a rychlé filtrování problémů.
-- **Widgety na plochu iPhonu i iPadu** - vyber konkrétní e-paper a sleduj jeho hodnoty bez otevírání aplikace.
+- **Widgety na plochu iPhonu** - vyber konkrétní e-paper a sleduj jeho hodnoty bez otevírání aplikace.
 - **Vlastní widgety pro libovolné hodnoty** - poskládej si vlastní kartu z jakékoli hodnoty dostupné v exportu služby Živý Obraz.
 - **Automatická aktualizace dat** - aplikace ukládá data pro widgety a obnovuje je na pozadí podle možností iOS.
 - **Detail zařízení** - informace o signálu, baterii, firmwaru, posledním kontaktu a historii měření.
 - **Více účtů a skupin** - můžeš přidat více exportních klíčů a volitelně filtrovat zařízení podle Group ID.
 - **Úprava dashboardu** - vlastní aliasy, řazení zařízení a skrytí nepoužívaných e-paperů.
-- **Volitelné odesílání baterie zařízení** - baterii iOS zařízení lze posílat zpět do Živého Obrazu přes importní API.
+- **Volitelné odesílání baterie telefonu** - baterii iPhonu lze posílat zpět do Živého Obrazu přes importní API.
 
 ## Ukázky aplikace
 
@@ -22,11 +22,12 @@ Dashboard ukazuje e-papery v přehledných kartách. Rychle vidíš, která zař
 <p>
   <img src="pics/hlavni_obrazovka_zarizeni.png" alt="Hlavní obrazovka se seznamem zařízení" width="280">
   <img src="pics/detail_zarizeni_1.png" alt="Detail zařízení s historií a diagnostikou" width="280">
+  <img src="pics/detail_zarizeni_2.png" alt="Detail zařízení s dalšími informacemi" width="280">
 </p>
 
 ### Widgety na ploše
 
-Klasické widgety zobrazují konkrétní e-paper přímo na ploše iPhonu nebo iPadu. Po prvním načtení dat v aplikaci stačí widget přidat na plochu a vybrat zařízení.
+Klasické widgety zobrazují konkrétní e-paper přímo na ploše iPhonu. Po prvním načtení dat v aplikaci stačí widget přidat na plochu a vybrat zařízení.
 
 <p>
   <img src="pics/widgety_na_plose.png" alt="Widgety Živý Obraz na ploše" width="560">
@@ -42,16 +43,15 @@ Vlastní widgety jsou určené pro hodnoty z exportu služby Živý Obraz. Můž
 </p>
 
 <p>
-  <img src="pics/custom_widgety_na_plose.png" alt="Vlastní widgety na ploše iPhonu nebo iPadu" width="560">
+  <img src="pics/custom_widgety_na_plose.png" alt="Vlastní widgety na ploše iPhonu" width="560">
 </p>
 
 ### Nastavení aplikace
 
-V nastavení se přidávají účty, exportní klíče, volitelné Group ID a importní API pro odesílání baterie zařízení.
+V nastavení se přidávají účty, exportní klíče, volitelné Group ID a importní API pro odesílání baterie telefonu.
 
 <p>
   <img src="pics/nastaveni_aplikace.png" alt="Nastavení účtů v aplikaci" width="280">
-  <img src="pics/detail_zarizeni_2.png" alt="Detail zařízení s dalšími informacemi" width="280">
 </p>
 
 ## Jak aplikaci nastavit
@@ -75,7 +75,7 @@ Po uložení aplikace načte zařízení a uloží data pro widgety.
 
 ### 3. Přidej widget na plochu
 
-1. Na ploše iPhonu nebo iPadu podrž prst na volném místě.
+1. Na ploše iPhonu podrž prst na volném místě.
 2. Klepni na **+** a vyhledej **Živý Obraz**.
 3. Vyber velikost widgetu.
 4. Po přidání widget podrž a zvol **Upravit widget**.
@@ -101,9 +101,9 @@ Pro nejlepší fungování nech aplikaci občas otevřít, ponech povolené aktu
 
 ## Požadavky
 
-- iPhone nebo iPad s iOS/iPadOS 17 nebo novějším.
+- iPhone s iOS 17 nebo novějším.
 - Exportní klíč ze služby Živý Obraz.
-- Pro odesílání baterie zařízení importní klíč ze služby Živý Obraz.
+- Pro odesílání baterie telefonu importní klíč ze služby Živý Obraz.
 
 ## Soukromí a klíče
 
