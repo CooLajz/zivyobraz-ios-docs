@@ -22,6 +22,7 @@ Dashboard ukazuje e-papery v přehledných kartách. Rychle vidíš, která zař
 <p>
   <img src="pics/hlavni_obrazovka_zarizeni.png" alt="Hlavní obrazovka se seznamem zařízení" width="280">
   <img src="pics/detail_zarizeni_1.png" alt="Detail zařízení s historií a diagnostikou" width="280">
+  <img src="pics/detail_zarizeni_2.png" alt="Detail zařízení s dalšími informacemi" width="280">
 </p>
 
 ### Widgety na ploše
@@ -51,7 +52,6 @@ V nastavení se přidávají účty, exportní klíče, volitelné Group ID a im
 
 <p>
   <img src="pics/nastaveni_aplikace.png" alt="Nastavení účtů v aplikaci" width="280">
-  <img src="pics/detail_zarizeni_2.png" alt="Detail zařízení s dalšími informacemi" width="280">
 </p>
 
 ## Jak aplikaci nastavit
