@@ -1,6 +1,6 @@
 # Živý Obraz pro iOS
 
-Jednoduchá iOS aplikace pro rychlý přehled zařízení ze služby **Živý Obraz**. V telefonu uvidíš stav svých e-paperů, naměřené hodnoty, baterii, historii i widgety přímo na ploše.
+Jednoduchá iOS aplikace pro rychlý přehled zařízení ze služby [**Živý Obraz**](https://zivyobraz.eu/?page=o-sluzbe). V telefonu uvidíš stav svých e-paperů, naměřené hodnoty, baterii, historii i widgety přímo na ploše.
 
 ## Hlavní funkce
 
