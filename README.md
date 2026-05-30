@@ -115,7 +115,7 @@ Pro nejlepší fungování nech aplikaci občas otevřít, ponech povolené aktu
 
 ## Soukromí a klíče
 
-Exportní a importní klíče se ukládají bezpečně do iOS Keychainu. Aplikace si lokálně ukládá jen potřebná nastavení, cache pro widgety, aliasy zařízení, pořadí zařízení a diagnostiku aktualizací.
+Exportní a importní klíče se ukládají bezpečně do iOS Keychainu. Citlivé klíče zůstávají v klíčence zařízení a při zapnuté synchronizaci mohou být označené jako sdílené, aby byly dostupné na zařízeních uživatele přihlášených ke stejnému Apple účtu. Synchronizace přes iCloud je volitelná, ve výchozím stavu vypnutá a uživatel ji zapíná ručně. Aplikace ukládá potřebná nastavení, cache pro widgety, aliasy zařízení, pořadí zařízení a diagnostiku aktualizací lokálně v zařízení, případně do iCloudu po zapnutí této funkce.
 
 ## Zásady ochrany soukromí
 
@@ -129,12 +129,16 @@ Aplikace zpracovává pouze data potřebná pro zobrazení informací ze služby
 - volitelný importní klíč pro odesílání baterie iOS zařízení do služby Živý Obraz,
 - názvy účtů zadané uživatelem,
 - seznam zařízení, naměřené hodnoty, stav baterie, online stav a další informace vrácené exportním API,
-- uživatelská nastavení aplikace, aliasy zařízení, pořadí zařízení, skryté položky, vlastní widgety a lokální cache pro widgety,
+- uživatelská nastavení aplikace, aliasy zařízení, pořadí zařízení, skryté položky, vlastní widgety a cache pro widgety,
 - technické informace potřebné pro diagnostiku aktualizací v aplikaci.
 
 ### Ukládání dat
 
-Exportní a importní klíče jsou uložené v iOS Keychainu. Ostatní nastavení a cache se ukládají lokálně v zařízení a ve sdíleném úložišti aplikace a widgetů. Aplikace tato data nepředává provozovateli aplikace, neodesílá je do vlastních serverů a nepoužívá je pro reklamu ani analytiku.
+Exportní a importní klíče jsou uložené v iOS Keychainu. Citlivé klíče zůstávají uložené v klíčence zařízení; pokud uživatel zapne synchronizaci přes iCloud, mohou být označené jako sdílené, aby byly dostupné na jeho zařízeních přihlášených ke stejnému Apple účtu. Ostatní nastavení a cache se ukládají lokálně v zařízení a ve sdíleném úložišti aplikace a widgetů.
+
+Synchronizace přes iCloud je volitelná, ve výchozím stavu vypnutá a uživatel ji zapíná ručně v aplikaci. Po zapnutí může aplikace ukládat nastavení a aplikační data do uživatelova iCloudu, aby se synchronizovala mezi jeho zařízeními a aby bylo možné data obnovit po reinstalaci aplikace.
+
+iCloud data jsou spravována společností Apple v rámci Apple účtu uživatele. Aplikace tato data nepředává provozovateli aplikace, neodesílá je do vlastních serverů a nepoužívá je pro reklamu ani analytiku.
 
 ### Komunikace se službou Živý Obraz
 
@@ -148,7 +152,7 @@ Aplikace neprodává, nepronajímá ani nesdílí osobní data s třetími stran
 
 ### Práva uživatele
 
-Uživatel může data uložená v aplikaci odstranit odebráním účtů, smazáním uložených nastavení nebo odinstalováním aplikace. Odebráním účtu se odstraní uložené klíče a lokální data související s tímto účtem v aplikaci.
+Uživatel může data uložená v aplikaci odstranit odebráním účtů, smazáním uložených nastavení nebo odinstalováním aplikace. Odebráním účtu se odstraní uložené klíče a data související s tímto účtem v aplikaci. Data uložená v iCloudu lze spravovat také v nastavení Apple účtu a iCloudu.
 
 ### Změny zásad
 
@@ -170,12 +174,16 @@ The app processes only the data required to display information from the Živý 
 - an optional import key used to send the iOS device battery level to the Živý Obraz service,
 - account names entered by the user,
 - device lists, measured values, battery status, online status, and other information returned by the export API,
-- app settings, device aliases, device order, hidden items, custom widgets, and local widget cache,
+- app settings, device aliases, device order, hidden items, custom widgets, and widget cache,
 - technical information needed for update diagnostics inside the app.
 
 ### Data Storage
 
-Export and import keys are stored in the iOS Keychain. Other settings and cache data are stored locally on the device and in the shared storage used by the app and its widgets. The app does not send this data to the app developer's own servers and does not use it for advertising or analytics.
+Export and import keys are stored in the iOS Keychain. Sensitive keys remain stored in the device keychain; if the user enables iCloud sync, they may be marked as shared so they are available on the user's devices signed in to the same Apple account. Other settings and cache data are stored locally on the device and in the shared storage used by the app and its widgets.
+
+iCloud sync is optional, disabled by default, and enabled manually by the user inside the app. After it is enabled, the app may store settings and app data in the user's iCloud so they can sync between the user's devices and be restored after reinstalling the app.
+
+iCloud data is managed by Apple as part of the user's Apple account. The app does not send this data to the app developer's own servers and does not use it for advertising or analytics.
 
 ### Communication with the Živý Obraz Service
 
@@ -189,7 +197,7 @@ The app does not sell, rent, or share personal data with third parties. The app 
 
 ### User Rights
 
-The user can remove data stored by the app by deleting accounts, clearing saved settings, or uninstalling the app. Removing an account deletes the stored keys and local app data related to that account.
+The user can remove data stored by the app by deleting accounts, clearing saved settings, or uninstalling the app. Removing an account deletes the stored keys and app data related to that account. Data stored in iCloud can also be managed in the Apple account and iCloud settings.
 
 ### Changes to This Policy
 
