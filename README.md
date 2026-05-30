@@ -116,3 +116,85 @@ Pro nejlepší fungování nech aplikaci občas otevřít, ponech povolené aktu
 ## Soukromí a klíče
 
 Exportní a importní klíče se ukládají bezpečně do iOS Keychainu. Aplikace si lokálně ukládá jen potřebná nastavení, cache pro widgety, aliasy zařízení, pořadí zařízení a diagnostiku aktualizací.
+
+## Zásady ochrany soukromí
+
+Tyto zásady ochrany soukromí se vztahují na iOS aplikaci **Živý Obraz**.
+
+### Jaká data aplikace zpracovává
+
+Aplikace zpracovává pouze data potřebná pro zobrazení informací ze služby Živý Obraz:
+
+- exportní klíče a volitelné Group ID pro načítání zařízení a hodnot,
+- volitelný importní klíč pro odesílání baterie iOS zařízení do služby Živý Obraz,
+- názvy účtů zadané uživatelem,
+- seznam zařízení, naměřené hodnoty, stav baterie, online stav a další informace vrácené exportním API,
+- uživatelská nastavení aplikace, aliasy zařízení, pořadí zařízení, skryté položky, vlastní widgety a lokální cache pro widgety,
+- technické informace potřebné pro diagnostiku aktualizací v aplikaci.
+
+### Ukládání dat
+
+Exportní a importní klíče jsou uložené v iOS Keychainu. Ostatní nastavení a cache se ukládají lokálně v zařízení a ve sdíleném úložišti aplikace a widgetů. Aplikace tato data nepředává provozovateli aplikace, neodesílá je do vlastních serverů a nepoužívá je pro reklamu ani analytiku.
+
+### Komunikace se službou Živý Obraz
+
+Aplikace používá zadané klíče pro komunikaci s API služby Živý Obraz. Při načítání dat odesílá exportní klíč, případně Group ID, aby mohla získat zařízení a hodnoty dostupné pro daný účet. Pokud uživatel zapne volitelné odesílání baterie zařízení, aplikace může pomocí importního klíče odesílat aktuální stav baterie iOS zařízení do služby Živý Obraz.
+
+Zpracování dat na straně služby Živý Obraz se řídí podmínkami a zásadami této služby.
+
+### Sdílení dat
+
+Aplikace neprodává, nepronajímá ani nesdílí osobní data s třetími stranami. Aplikace neobsahuje reklamní SDK, sledovací SDK ani analytické nástroje třetích stran.
+
+### Práva uživatele
+
+Uživatel může data uložená v aplikaci odstranit odebráním účtů, smazáním uložených nastavení nebo odinstalováním aplikace. Odebráním účtu se odstraní uložené klíče a lokální data související s tímto účtem v aplikaci.
+
+### Změny zásad
+
+Tyto zásady mohou být aktualizovány při změně funkcí aplikace nebo způsobu zpracování dat. Aktuální znění je dostupné na této stránce.
+
+### Kontakt
+
+V případě dotazů k ochraně soukromí použijte kontaktní údaje uvedené u aplikace v App Storu nebo v repozitáři projektu.
+
+## Privacy Policy
+
+This Privacy Policy applies to the **Živý Obraz** iOS app.
+
+### Data Processed by the App
+
+The app processes only the data required to display information from the Živý Obraz service:
+
+- export keys and an optional Group ID used to load devices and values,
+- an optional import key used to send the iOS device battery level to the Živý Obraz service,
+- account names entered by the user,
+- device lists, measured values, battery status, online status, and other information returned by the export API,
+- app settings, device aliases, device order, hidden items, custom widgets, and local widget cache,
+- technical information needed for update diagnostics inside the app.
+
+### Data Storage
+
+Export and import keys are stored in the iOS Keychain. Other settings and cache data are stored locally on the device and in the shared storage used by the app and its widgets. The app does not send this data to the app developer's own servers and does not use it for advertising or analytics.
+
+### Communication with the Živý Obraz Service
+
+The app uses the keys entered by the user to communicate with the Živý Obraz API. When loading data, the app sends the export key and, if configured, the Group ID so it can retrieve devices and values available for the account. If the user enables optional device battery reporting, the app may use the import key to send the current iOS device battery level to the Živý Obraz service.
+
+Data processing performed by the Živý Obraz service is governed by the terms and privacy policy of that service.
+
+### Data Sharing
+
+The app does not sell, rent, or share personal data with third parties. The app does not include advertising SDKs, tracking SDKs, or third-party analytics tools.
+
+### User Rights
+
+The user can remove data stored by the app by deleting accounts, clearing saved settings, or uninstalling the app. Removing an account deletes the stored keys and local app data related to that account.
+
+### Changes to This Policy
+
+This policy may be updated when the app features or data processing practices change. The latest version is available on this page.
+
+### Contact
+
+For privacy-related questions, please use the contact information provided for the app in the App Store or in the project repository.
