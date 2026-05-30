@@ -1,5 +1,7 @@
 # Živý Obraz pro iOS
 
+[English version](README.en.md)
+
 Jednoduchá iOS aplikace pro rychlý přehled zařízení ze služby [**Živý Obraz**](https://zivyobraz.eu/?page=o-sluzbe). Na iPhonu nebo iPadu uvidíš stav svých e-paperů, naměřené hodnoty, baterii, historii i widgety přímo na ploše.
 
 ## Veřejné testování přes TestFlight
@@ -125,14 +127,6 @@ Pokud narazíš na problém s aplikací, máš dotaz k nastavení nebo chceš na
 
 Do hlášení ideálně napiš verzi aplikace, verzi iOS/iPadOS, typ zařízení, popis problému a kroky, kterými lze problém zopakovat. U problémů se službou Živý Obraz nepřikládej exportní ani importní klíče.
 
-## Support
-
-If you have a problem with the app, need help with setup, or want to suggest an improvement, please open a new issue in the project's GitHub repository:
-
-**[Open a GitHub issue](https://github.com/CooLajz/zivyobraz-ios-docs/issues)**
-
-When reporting a problem, please include the app version, iOS/iPadOS version, device model, a description of the issue, and steps to reproduce it. Do not include export or import keys in issue reports.
-
 ## Zásady ochrany soukromí
 
 Tyto zásady ochrany soukromí se vztahují na iOS aplikaci **Živý Obraz**.
@@ -177,48 +171,3 @@ Tyto zásady mohou být aktualizovány při změně funkcí aplikace nebo způso
 ### Kontakt
 
 V případě dotazů k ochraně soukromí použijte kontaktní údaje uvedené u aplikace v App Storu nebo v repozitáři projektu.
-
-## Privacy Policy
-
-This Privacy Policy applies to the **Živý Obraz** iOS app.
-
-### Data Processed by the App
-
-The app processes only the data required to display information from the Živý Obraz service:
-
-- export keys and an optional Group ID used to load devices and values,
-- an optional import key used to send the iOS device battery level to the Živý Obraz service,
-- account names entered by the user,
-- device lists, measured values, battery status, online status, and other information returned by the export API,
-- app settings, device aliases, device order, hidden items, custom widgets, and widget cache,
-- technical information needed for update diagnostics inside the app.
-
-### Data Storage
-
-Export and import keys are stored in the iOS Keychain. Sensitive keys remain stored in the device keychain; if the user enables iCloud sync, they may be marked as shared so they are available on the user's devices signed in to the same Apple account. Other settings and cache data are stored locally on the device and in the shared storage used by the app and its widgets.
-
-iCloud sync is optional, disabled by default, and enabled manually by the user inside the app. After it is enabled, the app may store settings and app data in the user's iCloud so they can sync between the user's devices and be restored after reinstalling the app.
-
-iCloud data is managed by Apple as part of the user's Apple account. The app does not send this data to the app developer's own servers and does not use it for advertising or analytics.
-
-### Communication with the Živý Obraz Service
-
-The app uses the keys entered by the user to communicate with the Živý Obraz API. When loading data, the app sends the export key and, if configured, the Group ID so it can retrieve devices and values available for the account. If the user enables optional device battery reporting, the app may use the import key to send the current iOS device battery level to the Živý Obraz service.
-
-Data processing performed by the Živý Obraz service is governed by the terms and privacy policy of that service.
-
-### Data Sharing
-
-The app does not sell, rent, or share personal data with third parties. The app does not include advertising SDKs, tracking SDKs, or third-party analytics tools.
-
-### User Rights
-
-The user can remove data stored by the app by deleting accounts, clearing saved settings, or uninstalling the app. Removing an account deletes the stored keys and app data related to that account. Data stored in iCloud can also be managed in the Apple account and iCloud settings.
-
-### Changes to This Policy
-
-This policy may be updated when the app features or data processing practices change. The latest version is available on this page.
-
-### Contact
-
-For privacy-related questions, please use the contact information provided for the app in the App Store or in the project repository.
