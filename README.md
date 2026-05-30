@@ -117,6 +117,22 @@ Pro nejlepší fungování nech aplikaci občas otevřít, ponech povolené aktu
 
 Exportní a importní klíče se ukládají bezpečně do iOS Keychainu. Citlivé klíče zůstávají v klíčence zařízení a při zapnuté synchronizaci mohou být označené jako sdílené, aby byly dostupné na zařízeních uživatele přihlášených ke stejnému Apple účtu. Synchronizace přes iCloud je volitelná, ve výchozím stavu vypnutá a uživatel ji zapíná ručně. Aplikace ukládá potřebná nastavení, cache pro widgety, aliasy zařízení, pořadí zařízení a diagnostiku aktualizací lokálně v zařízení, případně do iCloudu po zapnutí této funkce.
 
+## Podpora
+
+Pokud narazíš na problém s aplikací, máš dotaz k nastavení nebo chceš navrhnout vylepšení, otevři prosím nové issue v GitHub repozitáři projektu:
+
+**[Otevřít GitHub issue](https://github.com/CooLajz/zivyobraz-ios-docs/issues)**
+
+Do hlášení ideálně napiš verzi aplikace, verzi iOS/iPadOS, typ zařízení, popis problému a kroky, kterými lze problém zopakovat. U problémů se službou Živý Obraz nepřikládej exportní ani importní klíče.
+
+## Support
+
+If you have a problem with the app, need help with setup, or want to suggest an improvement, please open a new issue in the project's GitHub repository:
+
+**[Open a GitHub issue](https://github.com/CooLajz/zivyobraz-ios-docs/issues)**
+
+When reporting a problem, please include the app version, iOS/iPadOS version, device model, a description of the issue, and steps to reproduce it. Do not include export or import keys in issue reports.
+
 ## Zásady ochrany soukromí
 
 Tyto zásady ochrany soukromí se vztahují na iOS aplikaci **Živý Obraz**.
