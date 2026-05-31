@@ -21,6 +21,7 @@ Testovací verze může obsahovat chyby nebo nedodělané chování. Když vyjde
 - **Detail zařízení** - informace o signálu, baterii, firmwaru, posledním kontaktu a historii měření.
 - **Více účtů a skupin** - můžeš přidat více exportních klíčů a volitelně filtrovat zařízení podle Group ID.
 - **Úprava dashboardu** - vlastní aliasy, řazení zařízení a skrytí nepoužívaných e-paperů.
+- **Volitelná synchronizace přes iCloud** - sdílení nastavení mezi zařízeními a volitelná záloha historie grafů.
 - **Volitelné odesílání baterie zařízení** - baterii iOS zařízení lze posílat zpět do Živého Obrazu přes importní API.
 - **Automatizace přes Zkratky** - akce pro iOS Zkratky umí odeslat stav zařízení nebo vlastní hodnoty senzorů.
 
@@ -103,6 +104,87 @@ Widget používá poslední načtená data a průběžně se aktualizuje podle m
 5. Přidej na plochu widget **Živý Obraz Custom** a vyber vytvořenou kartu stejným způsobem jako pro widget zařízení v bodě 3.
 
 Vlastní widget je vhodný například pro venkovní teplotu, vlhkost, tlak, CO2, kvalitu vzduchu, stav baterie nebo jakoukoli další hodnotu, kterou máš v exportu.
+
+## Synchronizace přes iCloud
+
+Aplikace může používat iCloud pro synchronizaci nastavení mezi zařízeními a volitelně také pro zálohu databáze s historií hodnot pro grafy.
+
+Cloud není povinný. Aplikace funguje i čistě lokálně v jednom zařízení.
+
+### Co znamená „Synchronizovat nastavení přes iCloud“
+
+Po zapnutí synchronizace se přes iCloud sdílí hlavně nastavení aplikace, například:
+
+- nastavení účtů a zařízení,
+- aliasy zařízení,
+- pořadí a skrytí karet na hlavní obrazovce,
+- sdílené vlastní karty,
+- seznam zařízení, která synchronizaci používají,
+- čas posledního refreshnutí dat na jednotlivých zařízeních.
+
+Exportní a importní klíče se ukládají přes iCloud Klíčenku Apple, aby byly dostupné i na dalších zařízeních přihlášených ke stejnému Apple ID.
+
+Historie hodnot pro grafy není součástí běžné synchronizace nastavení. Ta má vlastní samostatnou volbu pro zálohu databáze.
+
+### Zapnutí synchronizace
+
+Při zapnutí synchronizace aplikace zkontroluje, jestli už v iCloudu existuje uložená konfigurace.
+
+Pokud v iCloudu zatím žádná konfigurace není, aplikace nabídne použití aktuálního nastavení tohoto zařízení jako výchozí konfigurace pro ostatní zařízení. Když potom zapneš synchronizaci na dalším zařízení, převezme se právě toto nastavení.
+
+Pokud už v iCloudu konfigurace existuje, aplikace upozorní, že lokální nastavení v zařízení bude nahrazeno nastavením z iCloudu.
+
+### Záloha historie grafů
+
+Historie grafů je uložená v lokální databázi v zařízení. Tuto databázi je možné volitelně zálohovat do iCloudu.
+
+Záloha databáze je samostatná funkce. Můžeš si vybrat, jestli chceš databázi do cloudu ukládat, nebo jestli ji ponecháš pouze lokálně v zařízení.
+
+Když je záloha databáze zapnutá, aplikace ji ukládá na pozadí. Automatická záloha se nespouští neustále, ale nejvýše přibližně jednou za 4 hodiny, když má aplikace příležitost zálohu provést. Poslední čas zálohy je vidět v nastavení.
+
+Zálohu je možné spustit také ručně.
+
+### Obnova databáze z iCloudu
+
+Pokud aplikaci nainstaluješ znovu a lokální databáze je prázdná, aplikace může obnovit historii grafů ze zálohy v iCloudu.
+
+Pokud už ale v zařízení nějaká lokální databáze existuje, aplikace ji bez dotazu nepřepíše. V takové situaci se zeptá, jestli chceš lokální databázi nahradit databází z iCloudu, nebo ponechat aktuální lokální data.
+
+V dialogu obnovy je zobrazené také datum cloudové zálohy, aby bylo jasné, ze kdy záloha pochází.
+
+### Když databázi do cloudu nechceš ukládat
+
+Zálohu databáze do iCloudu je možné vypnout.
+
+Po vypnutí se cloudová záloha databáze smaže. Totéž se stane i v případě, že při zapnutí iCloudu zvolíš možnost ponechat databázi pouze lokálně.
+
+Nastavení aplikace se může dál synchronizovat přes iCloud, ale historie grafů zůstane jen v daném zařízení.
+
+### Vypnutí iCloudu
+
+Při vypnutí cloudové synchronizace se aplikace pokusí ještě naposledy odeslat aktuální zálohu databáze do iCloudu, pokud je záloha databáze zapnutá.
+
+Tato operace probíhá na pozadí, aby aplikace zbytečně nezamrzala ani u větší databáze.
+
+Po vypnutí synchronizace se nastavení přestane sdílet s iCloudem. Data potřebná pro používání aplikace zůstanou v zařízení lokálně.
+
+### Více zařízení
+
+V nastavení je pod přepínačem synchronizace vidět seznam zařízení, která používají cloudovou synchronizaci. U každého zařízení se zobrazuje čas posledního refreshnutí dat.
+
+Název zařízení může být kvůli omezením iOS zobrazen obecně, například jako „iPhone“ nebo „iPad“.
+
+### Offline režim
+
+Pro zapnutí synchronizace, obnovu z iCloudu nebo mazání cloudové zálohy je potřeba internetové připojení.
+
+Pokud aplikace není online, některé změny nastavení se uloží jako čekající a odešlou se později, až bude připojení dostupné. Záloha databáze ale vyžaduje dostupný iCloud a internet.
+
+### Důležité
+
+Synchronizace přes iCloud slouží hlavně k přenosu a sjednocení nastavení mezi zařízeními. Není to průběžné slučování všech lokálních změn ve stylu sdíleného dokumentu.
+
+Databáze s historií grafů je řešená odděleně jako záloha. Díky tomu si můžeš vybrat, jestli ji chceš ukládat do iCloudu, nebo ji ponechat pouze lokálně.
 
 ## Automatizace přes Zkratky v iOS
 

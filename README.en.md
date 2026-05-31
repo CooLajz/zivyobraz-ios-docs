@@ -21,6 +21,7 @@ Test versions may contain bugs or unfinished behavior. When a new test version i
 - **Device detail** - signal, battery, firmware, last contact, and measurement history.
 - **Multiple accounts and groups** - add multiple export keys and optionally filter devices by Group ID.
 - **Dashboard customization** - custom aliases, device ordering, and hiding unused e-paper devices.
+- **Optional iCloud sync** - share settings between devices and optionally back up chart history.
 - **Optional device battery reporting** - the iOS device battery level can be sent back to Živý Obraz via the import API.
 - **Shortcuts automation** - iOS Shortcuts actions can send device status or custom sensor values.
 
@@ -103,6 +104,87 @@ The widget uses the last loaded data and refreshes periodically according to iOS
 5. Add the **Živý Obraz Custom** widget to the Home Screen and select the created card in the same way as for a device widget in step 3.
 
 A custom widget is useful for outdoor temperature, humidity, pressure, CO2, air quality, battery status, or any other value available in your export.
+
+## iCloud Sync
+
+The app can use iCloud to sync settings between devices and optionally back up the database with chart value history.
+
+Cloud sync is not required. The app also works fully locally on a single device.
+
+### What "Sync Settings via iCloud" Means
+
+When sync is enabled, iCloud mainly shares app settings such as:
+
+- account and device settings,
+- device aliases,
+- card order and hidden cards on the main screen,
+- shared custom cards,
+- the list of devices using sync,
+- the last data refresh time on each device.
+
+Export and import keys are stored through Apple's iCloud Keychain so they are also available on other devices signed in to the same Apple ID.
+
+Chart value history is not part of the normal settings sync. It has its own separate database backup option.
+
+### Enabling Sync
+
+When you enable sync, the app checks whether a saved configuration already exists in iCloud.
+
+If no configuration exists in iCloud yet, the app offers to use the current settings from this device as the default configuration for other devices. When you later enable sync on another device, it will use this configuration.
+
+If a configuration already exists in iCloud, the app warns you that the local settings on the device will be replaced by the settings from iCloud.
+
+### Chart History Backup
+
+Chart history is stored in a local database on the device. This database can optionally be backed up to iCloud.
+
+Database backup is a separate feature. You can choose whether to store the database in the cloud or keep it only locally on the device.
+
+When database backup is enabled, the app saves it in the background. Automatic backup does not run constantly; it runs at most about once every 4 hours when the app has an opportunity to perform the backup. The last backup time is shown in settings.
+
+You can also start the backup manually.
+
+### Restoring the Database from iCloud
+
+If you reinstall the app and the local database is empty, the app can restore chart history from the iCloud backup.
+
+If a local database already exists on the device, the app does not overwrite it without asking. In that situation, it asks whether you want to replace the local database with the database from iCloud or keep the current local data.
+
+The restore dialog also shows the date of the cloud backup so it is clear when the backup was created.
+
+### If You Do Not Want to Store the Database in Cloud
+
+You can turn off database backup to iCloud.
+
+When it is turned off, the cloud database backup is deleted. The same happens if you choose to keep the database only locally when enabling iCloud.
+
+App settings can still sync through iCloud, but chart history remains only on that device.
+
+### Turning Off iCloud
+
+When cloud sync is turned off, the app tries one last time to upload the current database backup to iCloud if database backup is enabled.
+
+This operation runs in the background so the app does not unnecessarily freeze, even with a larger database.
+
+After sync is turned off, settings are no longer shared with iCloud. Data required for using the app remains stored locally on the device.
+
+### Multiple Devices
+
+In settings, below the sync switch, you can see the list of devices using cloud sync. Each device shows the time of its last data refresh.
+
+Because of iOS limitations, the device name may be shown generically, for example as "iPhone" or "iPad".
+
+### Offline Mode
+
+An internet connection is required to enable sync, restore from iCloud, or delete the cloud backup.
+
+If the app is offline, some settings changes are saved as pending changes and sent later when a connection is available. Database backup, however, requires available iCloud access and an internet connection.
+
+### Important
+
+iCloud sync is mainly intended to transfer and unify settings between devices. It is not continuous merging of all local changes in the style of a shared document.
+
+The database with chart history is handled separately as a backup. This lets you choose whether to store it in iCloud or keep it only locally.
 
 ## Automation via iOS Shortcuts
 
