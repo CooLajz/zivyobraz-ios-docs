@@ -22,6 +22,7 @@ Testovací verze může obsahovat chyby nebo nedodělané chování. Když vyjde
 - **Více účtů a skupin** - můžeš přidat více exportních klíčů a volitelně filtrovat zařízení podle Group ID.
 - **Úprava dashboardu** - vlastní aliasy, řazení zařízení a skrytí nepoužívaných e-paperů.
 - **Volitelné odesílání baterie zařízení** - baterii iOS zařízení lze posílat zpět do Živého Obrazu přes importní API.
+- **Automatizace přes Zkratky** - akce pro iOS Zkratky umí odeslat stav zařízení nebo vlastní hodnoty senzorů.
 
 ## Ukázky aplikace
 
@@ -103,6 +104,126 @@ Widget používá poslední načtená data a průběžně se aktualizuje podle m
 
 Vlastní widget je vhodný například pro venkovní teplotu, vlhkost, tlak, CO2, kvalitu vzduchu, stav baterie nebo jakoukoli další hodnotu, kterou máš v exportu.
 
+## Automatizace přes Zkratky v iOS
+
+Aplikace Živý Obraz podporuje akce pro aplikaci Zkratky v iOS. Díky tomu můžeš při různých událostech v telefonu automaticky odeslat údaje do služby Živý Obraz.
+
+Typické použití:
+
+- po připojení nabíječky odeslat stav baterie,
+- po připojení k Wi-Fi odeslat název sítě,
+- odeslat aktuální IP adresu telefonu,
+- poslat vlastní hodnoty senzorů vytvořené přímo ve Zkratkách.
+
+### Dostupné akce
+
+Ve Zkratkách najdeš akce aplikace Živý Obraz.
+
+#### Odeslat stav zařízení
+
+Akce odešle aktuální stav telefonu do účtů, kde je v aplikaci zapnuté odesílání stavu zařízení.
+
+Odesílá se například:
+
+- procento baterie,
+- stav nabíjení.
+
+Tato akce je vhodná například pro automatizaci „Při připojení k nabíječce“.
+
+#### Přidat hodnotu senzoru
+
+Tato akce vytvoří jednu hodnotu senzoru, která se později odešle do Živého Obrazu.
+
+Vyplňuje se:
+
+- název senzoru,
+- hodnota senzoru.
+
+Příklad:
+
+- název senzoru: `WiFi`
+- hodnota: aktuální název Wi-Fi sítě
+
+Akce sama o sobě ještě nic neodesílá. Pouze připraví hodnotu pro pozdější odeslání.
+
+#### Odeslat hodnoty senzorů
+
+Tato akce odešle připravené hodnoty senzorů do vybraného účtu Živého Obrazu.
+
+Vyplňuje se:
+
+- účet,
+- hodnoty senzorů.
+
+Pokud před touto akcí použiješ jednu nebo více akcí „Přidat hodnotu senzoru“, měla by se hodnota do odesílací akce doplnit automaticky. Pokud se nedoplní, vyber jako „Hodnoty senzorů“ výstup z poslední akce „Přidat hodnotu senzoru“.
+
+### Jak odeslat více senzorů najednou
+
+Pokud chceš odeslat více hodnot, vlož několik akcí „Přidat hodnotu senzoru“ za sebou a nakonec jednu akci „Odeslat hodnoty senzorů“.
+
+Příklad:
+
+1. Přidat hodnotu senzoru  
+   Název: `WiFi`  
+   Hodnota: název aktuální Wi-Fi sítě
+
+2. Přidat hodnotu senzoru  
+   Název: `IP`  
+   Hodnota: aktuální IP adresa
+
+3. Odeslat hodnoty senzorů  
+   Účet: vybraný účet Živého Obrazu  
+   Hodnoty senzorů: výstup z poslední akce „Přidat hodnotu senzoru“
+
+Důležité: poslední akce „Přidat hodnotu senzoru“ neobsahuje pouze poslední senzor. Obsahuje celý nasbíraný seznam předchozích senzorů.
+
+To znamená:
+
+- první „Přidat hodnotu senzoru“ vytvoří seznam s jednou hodnotou,
+- druhá akce vezme předchozí seznam a přidá další hodnotu,
+- třetí akce opět přidá další hodnotu,
+- akce „Odeslat hodnoty senzorů“ odešle celý výsledný seznam.
+
+### Prázdná hodnota senzoru
+
+Prázdná hodnota není chyba. Pokud senzor odešleš bez hodnoty, odešle se jako prázdná hodnota.
+
+To se může hodit například tehdy, když některý údaj není v danou chvíli dostupný.
+
+### Názvy senzorů
+
+Název senzoru se při odesílání automaticky upraví do bezpečného formátu vhodného pro import do Živého Obrazu.
+
+Doporučujeme používat jednoduché názvy bez speciálních znaků, například:
+
+- `WiFi`
+- `IP`
+- `Baterie`
+- `Rezim`
+- `Telefon`
+
+### Použití v osobní automatizaci
+
+Akce Živého Obrazu můžeš použít také v osobních automatizacích iOS.
+
+Například:
+
+1. Otevři aplikaci Zkratky.
+2. Přejdi na Automatizace.
+3. Vytvoř novou osobní automatizaci.
+4. Vyber událost, například „Nabíječka“.
+5. Přidej akci Živého Obrazu.
+6. Nastav akci podle potřeby.
+7. Pokud to iOS nabízí, nastav spuštění automatizace bez potvrzení.
+
+Tím lze například ihned po připojení nabíječky odeslat aktuální stav telefonu do Živého Obrazu, místo čekání na běžnou aktualizaci na pozadí.
+
+### Poznámka k chování iOS
+
+Spouštění automatizací řídí systém iOS. Některé automatizace mohou podle nastavení telefonu vyžadovat potvrzení nebo mohou být systémem omezené.
+
+Aplikace Živý Obraz akci zpracuje bez nutnosti ručně otevírat aplikaci, pokud to iOS v dané situaci dovolí.
+
 ## Automatická aktualizace
 
 Aplikace používá background refresh a sdílenou cache pro widgety. iOS vždy rozhoduje, kdy přesně může aplikace nebo widget data obnovit, ale aplikace se snaží udržovat data čerstvá a zároveň zbytečně nevolat API.
@@ -136,9 +257,10 @@ Tyto zásady ochrany soukromí se vztahují na iOS aplikaci **Živý Obraz**.
 Aplikace zpracovává pouze data potřebná pro zobrazení informací ze služby Živý Obraz:
 
 - exportní klíče a volitelné Group ID pro načítání zařízení a hodnot,
-- volitelný importní klíč pro odesílání baterie iOS zařízení do služby Živý Obraz,
+- volitelný importní klíč pro odesílání baterie iOS zařízení, stavu zařízení nebo vlastních hodnot senzorů do služby Živý Obraz,
 - názvy účtů zadané uživatelem,
 - seznam zařízení, naměřené hodnoty, stav baterie, online stav a další informace vrácené exportním API,
+- hodnoty vytvořené uživatelem v iOS Zkratkách, pokud je uživatel odešle pomocí akcí Živého Obrazu,
 - uživatelská nastavení aplikace, aliasy zařízení, pořadí zařízení, skryté položky, vlastní widgety a cache pro widgety,
 - technické informace potřebné pro diagnostiku aktualizací v aplikaci.
 
@@ -152,7 +274,7 @@ iCloud data jsou spravována společností Apple v rámci Apple účtu uživatel
 
 ### Komunikace se službou Živý Obraz
 
-Aplikace používá zadané klíče pro komunikaci s API služby Živý Obraz. Při načítání dat odesílá exportní klíč, případně Group ID, aby mohla získat zařízení a hodnoty dostupné pro daný účet. Pokud uživatel zapne volitelné odesílání baterie zařízení, aplikace může pomocí importního klíče odesílat aktuální stav baterie iOS zařízení do služby Živý Obraz.
+Aplikace používá zadané klíče pro komunikaci s API služby Živý Obraz. Při načítání dat odesílá exportní klíč, případně Group ID, aby mohla získat zařízení a hodnoty dostupné pro daný účet. Pokud uživatel zapne volitelné odesílání stavu zařízení nebo použije akce ve Zkratkách, aplikace může pomocí importního klíče odesílat aktuální stav baterie iOS zařízení, stav nabíjení nebo vlastní hodnoty senzorů do služby Živý Obraz.
 
 Zpracování dat na straně služby Živý Obraz se řídí podmínkami a zásadami této služby.
 

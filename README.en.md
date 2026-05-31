@@ -22,6 +22,7 @@ Test versions may contain bugs or unfinished behavior. When a new test version i
 - **Multiple accounts and groups** - add multiple export keys and optionally filter devices by Group ID.
 - **Dashboard customization** - custom aliases, device ordering, and hiding unused e-paper devices.
 - **Optional device battery reporting** - the iOS device battery level can be sent back to Živý Obraz via the import API.
+- **Shortcuts automation** - iOS Shortcuts actions can send device status or custom sensor values.
 
 ## App Screenshots
 
@@ -103,6 +104,126 @@ The widget uses the last loaded data and refreshes periodically according to iOS
 
 A custom widget is useful for outdoor temperature, humidity, pressure, CO2, air quality, battery status, or any other value available in your export.
 
+## Automation via iOS Shortcuts
+
+The Živý Obraz app supports actions for the iOS Shortcuts app. This lets you automatically send data to the Živý Obraz service when different events happen on your phone.
+
+Typical uses:
+
+- send the battery status after connecting a charger,
+- send the network name after connecting to Wi-Fi,
+- send the phone's current IP address,
+- send custom sensor values created directly in Shortcuts.
+
+### Available Actions
+
+You can find Živý Obraz actions in Shortcuts.
+
+#### Send Device Status
+
+This action sends the current phone status to accounts where device status reporting is enabled in the app.
+
+It sends values such as:
+
+- battery percentage,
+- charging status.
+
+This action is useful, for example, for an automation that runs when a charger is connected.
+
+#### Add Sensor Value
+
+This action creates one sensor value that can later be sent to Živý Obraz.
+
+Fill in:
+
+- sensor name,
+- sensor value.
+
+Example:
+
+- sensor name: `WiFi`
+- value: current Wi-Fi network name
+
+This action does not send anything by itself. It only prepares the value for sending later.
+
+#### Send Sensor Values
+
+This action sends the prepared sensor values to the selected Živý Obraz account.
+
+Fill in:
+
+- account,
+- sensor values.
+
+If you use one or more "Add Sensor Value" actions before this action, the value should be filled into the sending action automatically. If it is not, set "Sensor Values" to the output of the last "Add Sensor Value" action.
+
+### How to Send Multiple Sensors at Once
+
+If you want to send multiple values, add several "Add Sensor Value" actions one after another and finish with one "Send Sensor Values" action.
+
+Example:
+
+1. Add Sensor Value  
+   Name: `WiFi`  
+   Value: current Wi-Fi network name
+
+2. Add Sensor Value  
+   Name: `IP`  
+   Value: current IP address
+
+3. Send Sensor Values  
+   Account: selected Živý Obraz account  
+   Sensor Values: output from the last "Add Sensor Value" action
+
+Important: the last "Add Sensor Value" action does not contain only the last sensor. It contains the full collected list of previous sensors.
+
+This means:
+
+- the first "Add Sensor Value" action creates a list with one value,
+- the second action takes the previous list and adds another value,
+- the third action adds another value again,
+- the "Send Sensor Values" action sends the complete resulting list.
+
+### Empty Sensor Value
+
+An empty value is not an error. If you send a sensor without a value, it is sent as an empty value.
+
+This can be useful when some data is not available at that moment.
+
+### Sensor Names
+
+The sensor name is automatically converted to a safe format suitable for import into Živý Obraz when it is sent.
+
+We recommend using simple names without special characters, for example:
+
+- `WiFi`
+- `IP`
+- `Battery`
+- `Mode`
+- `Phone`
+
+### Using Personal Automations
+
+You can also use Živý Obraz actions in iOS personal automations.
+
+For example:
+
+1. Open the Shortcuts app.
+2. Go to Automation.
+3. Create a new personal automation.
+4. Choose an event, for example "Charger".
+5. Add a Živý Obraz action.
+6. Configure the action as needed.
+7. If iOS offers it, set the automation to run without confirmation.
+
+This can send the current phone status to Živý Obraz immediately after connecting a charger, instead of waiting for a normal background update.
+
+### Note About iOS Behavior
+
+Automation execution is controlled by iOS. Depending on the phone settings, some automations may require confirmation or may be limited by the system.
+
+The Živý Obraz app processes the action without requiring you to open the app manually, as long as iOS allows it in that situation.
+
 ## Automatic Updates
 
 The app uses background refresh and a shared cache for widgets. iOS always decides exactly when the app or widget can refresh data, but the app tries to keep data fresh while avoiding unnecessary API calls.
@@ -136,9 +257,10 @@ This Privacy Policy applies to the **Živý Obraz** iOS app.
 The app processes only the data required to display information from the Živý Obraz service:
 
 - export keys and an optional Group ID used to load devices and values,
-- an optional import key used to send the iOS device battery level to the Živý Obraz service,
+- an optional import key used to send the iOS device battery level, device status, or custom sensor values to the Živý Obraz service,
 - account names entered by the user,
 - device lists, measured values, battery status, online status, and other information returned by the export API,
+- values created by the user in iOS Shortcuts, if the user sends them using Živý Obraz actions,
 - app settings, device aliases, device order, hidden items, custom widgets, and widget cache,
 - technical information needed for update diagnostics inside the app.
 
@@ -152,7 +274,7 @@ iCloud data is managed by Apple as part of the user's Apple account. The app doe
 
 ### Communication with the Živý Obraz Service
 
-The app uses the keys entered by the user to communicate with the Živý Obraz API. When loading data, the app sends the export key and, if configured, the Group ID so it can retrieve devices and values available for the account. If the user enables optional device battery reporting, the app may use the import key to send the current iOS device battery level to the Živý Obraz service.
+The app uses the keys entered by the user to communicate with the Živý Obraz API. When loading data, the app sends the export key and, if configured, the Group ID so it can retrieve devices and values available for the account. If the user enables optional device status reporting or uses Shortcuts actions, the app may use the import key to send the current iOS device battery level, charging status, or custom sensor values to the Živý Obraz service.
 
 Data processing performed by the Živý Obraz service is governed by the terms and privacy policy of that service.
 
