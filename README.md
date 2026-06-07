@@ -15,6 +15,7 @@ Testovací verze může obsahovat chyby nebo nedodělané chování. Když vyjde
 ## Hlavní funkce
 
 - **Přehled všech zařízení** - teplota, vlhkost, baterie, online stav a rychlé filtrování problémů.
+- **Lokální upozornění na stav e-paperů** - oznámení a odznak aplikace pro nově zpožděná zařízení, návrat do normálu a baterii pod 20 %.
 - **Widgety na plochu iPhonu i iPadu** - vyber konkrétní e-paper a sleduj jeho hodnoty bez otevírání aplikace.
 - **Vlastní widgety pro libovolné hodnoty** - poskládej si vlastní kartu z jakékoli hodnoty dostupné v exportu služby Živý Obraz.
 - **Automatická aktualizace dat** - aplikace ukládá data pro widgety a obnovuje je na pozadí podle možností iOS.
@@ -60,7 +61,7 @@ Vlastní widgety jsou určené pro hodnoty z exportu služby Živý Obraz. Můž
 
 ### Nastavení aplikace
 
-V nastavení se přidávají účty, exportní klíče, volitelné Group ID a importní API pro odesílání baterie zařízení.
+V nastavení se přidávají účty, exportní klíče, volitelné Group ID, lokální upozornění a importní API pro odesílání baterie zařízení.
 
 <p>
   <img src="pics/nastaveni_aplikace.png" alt="Nastavení účtů v aplikaci" width="280">
@@ -104,6 +105,20 @@ Widget používá poslední načtená data a průběžně se aktualizuje podle m
 5. Přidej na plochu widget **Živý Obraz Custom** a vyber vytvořenou kartu stejným způsobem jako pro widget zařízení v bodě 3.
 
 Vlastní widget je vhodný například pro venkovní teplotu, vlhkost, tlak, CO2, kvalitu vzduchu, stav baterie nebo jakoukoli další hodnotu, kterou máš v exportu.
+
+## Lokální upozornění na stav e-paperů
+
+Aplikace umí posílat lokální iOS upozornění, když se některý e-paper dostane do problémového stavu nebo se z něj vrátí zpět. Nastavení upozornění je ve výchozím stavu zapnuté, ale iOS oznámení zobrazí až po udělení oprávnění pro aplikaci Živý Obraz.
+
+Aplikace upozorní na:
+
+- nově zpožděný e-paper, který se dlouho neozval,
+- návrat zařízení zpět do normálního stavu,
+- pokles baterie zařízení pod 20 %.
+
+Při ručním, foreground i background refreshi si aplikace ukládá poslední známý stav zařízení, aby stejné upozornění neposílala opakovaně. Podle aktuálních problémů zařízení aktualizuje také odznak aplikace na ploše iOS.
+
+Lokální upozornění můžeš vypnout v nastavení aplikace. Pokud oprávnění k oznámením v iOS odmítneš nebo později vypneš, aplikace dál zobrazuje stav zařízení v dashboardu a widgetech, ale systémová oznámení a odznaky nemusí být dostupné.
 
 ## Synchronizace přes iCloud
 
@@ -310,6 +325,8 @@ Aplikace Živý Obraz akci zpracuje bez nutnosti ručně otevírat aplikaci, pok
 
 Aplikace používá background refresh a sdílenou cache pro widgety. iOS vždy rozhoduje, kdy přesně může aplikace nebo widget data obnovit, ale aplikace se snaží udržovat data čerstvá a zároveň zbytečně nevolat API.
 
+Při každé úspěšné obnově aplikace vyhodnocuje také stav lokálních upozornění. Díky uloženému stavu z foreground i background refreshů pozná nové problémy, návrat zařízení do normálu a pokles baterie pod 20 % bez opakovaného posílání stejného upozornění.
+
 Pro nejlepší fungování nech aplikaci občas otevřít, ponech povolené aktualizace na pozadí a po změně nastavení proveď ruční refresh.
 
 ## Požadavky
@@ -317,10 +334,11 @@ Pro nejlepší fungování nech aplikaci občas otevřít, ponech povolené aktu
 - iPhone nebo iPad s iOS/iPadOS 17 nebo novějším.
 - Exportní klíč ze služby Živý Obraz.
 - Pro odesílání baterie zařízení importní klíč ze služby Živý Obraz.
+- Pro lokální upozornění povolená oznámení pro aplikaci Živý Obraz.
 
 ## Soukromí a klíče
 
-Exportní a importní klíče se ukládají bezpečně do iOS Keychainu. Citlivé klíče zůstávají v klíčence zařízení a při zapnuté synchronizaci mohou být označené jako sdílené, aby byly dostupné na zařízeních uživatele přihlášených ke stejnému Apple účtu. Synchronizace přes iCloud je volitelná, ve výchozím stavu vypnutá a uživatel ji zapíná ručně. Aplikace ukládá potřebná nastavení, cache pro widgety, aliasy zařízení, pořadí zařízení a diagnostiku aktualizací lokálně v zařízení, případně do iCloudu po zapnutí této funkce.
+Exportní a importní klíče se ukládají bezpečně do iOS Keychainu. Citlivé klíče zůstávají v klíčence zařízení a při zapnuté synchronizaci mohou být označené jako sdílené, aby byly dostupné na zařízeních uživatele přihlášených ke stejnému Apple účtu. Synchronizace přes iCloud je volitelná, ve výchozím stavu vypnutá a uživatel ji zapíná ručně. Aplikace ukládá potřebná nastavení, cache pro widgety, aliasy zařízení, pořadí zařízení, nastavení upozornění, stav posledních upozornění a diagnostiku aktualizací lokálně v zařízení, případně do iCloudu po zapnutí této funkce.
 
 ## Podpora
 
@@ -343,12 +361,13 @@ Aplikace zpracovává pouze data potřebná pro zobrazení informací ze služby
 - názvy účtů zadané uživatelem,
 - seznam zařízení, naměřené hodnoty, stav baterie, online stav a další informace vrácené exportním API,
 - hodnoty vytvořené uživatelem v iOS Zkratkách, pokud je uživatel odešle pomocí akcí Živého Obrazu,
-- uživatelská nastavení aplikace, aliasy zařízení, pořadí zařízení, skryté položky, vlastní widgety a cache pro widgety,
+- uživatelská nastavení aplikace, aliasy zařízení, pořadí zařízení, skryté položky, vlastní widgety, nastavení lokálních upozornění a cache pro widgety,
+- stav posledních vyhodnocených upozornění a refreshů, aby aplikace neposílala duplicitní lokální oznámení,
 - technické informace potřebné pro diagnostiku aktualizací v aplikaci.
 
 ### Ukládání dat
 
-Exportní a importní klíče jsou uložené v iOS Keychainu. Citlivé klíče zůstávají uložené v klíčence zařízení; pokud uživatel zapne synchronizaci přes iCloud, mohou být označené jako sdílené, aby byly dostupné na jeho zařízeních přihlášených ke stejnému Apple účtu. Ostatní nastavení a cache se ukládají lokálně v zařízení a ve sdíleném úložišti aplikace a widgetů.
+Exportní a importní klíče jsou uložené v iOS Keychainu. Citlivé klíče zůstávají uložené v klíčence zařízení; pokud uživatel zapne synchronizaci přes iCloud, mohou být označené jako sdílené, aby byly dostupné na jeho zařízeních přihlášených ke stejnému Apple účtu. Ostatní nastavení, cache a stav lokálních upozornění se ukládají lokálně v zařízení a ve sdíleném úložišti aplikace a widgetů.
 
 Synchronizace přes iCloud je volitelná, ve výchozím stavu vypnutá a uživatel ji zapíná ručně v aplikaci. Po zapnutí může aplikace ukládat nastavení a aplikační data do uživatelova iCloudu, aby se synchronizovala mezi jeho zařízeními a aby bylo možné data obnovit po reinstalaci aplikace.
 

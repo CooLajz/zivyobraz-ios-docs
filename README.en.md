@@ -15,6 +15,7 @@ Test versions may contain bugs or unfinished behavior. When a new test version i
 ## Main Features
 
 - **Overview of all devices** - temperature, humidity, battery, online status, and quick filtering of problems.
+- **Local e-paper status notifications** - alerts and app badge updates for newly overdue devices, recovery, and battery below 20%.
 - **Home Screen widgets for iPhone and iPad** - choose a specific e-paper device and follow its values without opening the app.
 - **Custom widgets for any values** - build your own card from any value available in the Živý Obraz service export.
 - **Automatic data updates** - the app stores data for widgets and refreshes it in the background according to iOS capabilities.
@@ -60,7 +61,7 @@ Custom widgets are designed for values from the Živý Obraz service export. You
 
 ### App Settings
 
-Settings are used to add accounts, export keys, an optional Group ID, and import API access for device battery reporting.
+Settings are used to add accounts, export keys, an optional Group ID, local notifications, and import API access for device battery reporting.
 
 <p>
   <img src="pics/nastaveni_aplikace.png" alt="Account settings in the app" width="280">
@@ -104,6 +105,20 @@ The widget uses the last loaded data and refreshes periodically according to iOS
 5. Add the **Živý Obraz Custom** widget to the Home Screen and select the created card in the same way as for a device widget in step 3.
 
 A custom widget is useful for outdoor temperature, humidity, pressure, CO2, air quality, battery status, or any other value available in your export.
+
+## Local E-paper Status Notifications
+
+The app can send local iOS notifications when an e-paper device enters a problem state or returns to normal. The notification setting is enabled by default, but iOS shows alerts only after you grant notification permission to the Živý Obraz app.
+
+The app can notify you about:
+
+- a newly overdue e-paper device that has not reported for too long,
+- a device returning back to normal status,
+- a device battery dropping below 20%.
+
+During manual, foreground, and background refreshes, the app stores the last known device status so it does not send the same notification repeatedly. It also updates the app icon badge according to the current device problems.
+
+You can turn local notifications off in the app settings. If you deny notification permission in iOS or turn it off later, the app still shows device status in the dashboard and widgets, but system notifications and badges may not be available.
 
 ## iCloud Sync
 
@@ -310,6 +325,8 @@ The Živý Obraz app processes the action without requiring you to open the app 
 
 The app uses background refresh and a shared cache for widgets. iOS always decides exactly when the app or widget can refresh data, but the app tries to keep data fresh while avoiding unnecessary API calls.
 
+After every successful refresh, the app also evaluates local notification state. By storing state from both foreground and background refreshes, it can detect new problems, recovery, and battery drops below 20% without sending duplicate notifications.
+
 For best results, open the app from time to time, keep Background App Refresh enabled, and perform a manual refresh after changing settings.
 
 ## Requirements
@@ -317,10 +334,11 @@ For best results, open the app from time to time, keep Background App Refresh en
 - iPhone or iPad with iOS/iPadOS 17 or newer.
 - Export key from the Živý Obraz service.
 - Import key from the Živý Obraz service for device battery reporting.
+- Notification permission for the Živý Obraz app to use local notifications.
 
 ## Privacy and Keys
 
-Export and import keys are stored securely in the iOS Keychain. Sensitive keys remain in the device keychain and, when sync is enabled, may be marked as shared so they are available on the user's devices signed in to the same Apple account. iCloud sync is optional, disabled by default, and enabled manually by the user. The app stores required settings, widget cache, device aliases, device order, and update diagnostics locally on the device, or in iCloud after this feature is enabled.
+Export and import keys are stored securely in the iOS Keychain. Sensitive keys remain in the device keychain and, when sync is enabled, may be marked as shared so they are available on the user's devices signed in to the same Apple account. iCloud sync is optional, disabled by default, and enabled manually by the user. The app stores required settings, widget cache, device aliases, device order, notification settings, last notification state, and update diagnostics locally on the device, or in iCloud after this feature is enabled.
 
 ## Support
 
@@ -343,12 +361,13 @@ The app processes only the data required to display information from the Živý 
 - account names entered by the user,
 - device lists, measured values, battery status, online status, and other information returned by the export API,
 - values created by the user in iOS Shortcuts, if the user sends them using Živý Obraz actions,
-- app settings, device aliases, device order, hidden items, custom widgets, and widget cache,
+- app settings, device aliases, device order, hidden items, custom widgets, local notification settings, and widget cache,
+- last evaluated notification and refresh state, so the app does not send duplicate local notifications,
 - technical information needed for update diagnostics inside the app.
 
 ### Data Storage
 
-Export and import keys are stored in the iOS Keychain. Sensitive keys remain stored in the device keychain; if the user enables iCloud sync, they may be marked as shared so they are available on the user's devices signed in to the same Apple account. Other settings and cache data are stored locally on the device and in the shared storage used by the app and its widgets.
+Export and import keys are stored in the iOS Keychain. Sensitive keys remain stored in the device keychain; if the user enables iCloud sync, they may be marked as shared so they are available on the user's devices signed in to the same Apple account. Other settings, cache data, and local notification state are stored locally on the device and in the shared storage used by the app and its widgets.
 
 iCloud sync is optional, disabled by default, and enabled manually by the user inside the app. After it is enabled, the app may store settings and app data in the user's iCloud so they can sync between the user's devices and be restored after reinstalling the app.
 
